@@ -2,33 +2,680 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "BiotifBlack";
+  src: url("/assets/fonts/Fontspring-DEMO-biotif-black.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Overused Grotesk";
+  src: url("/assets/fonts/OverusedGrotesk-Bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 7, 11, 25;
-  --background-end-rgb: 12, 18, 38;
+  /* PALETA 03 */
+  --pink-soft: #D9B0B7;
+  --pink-rose: #D99AAB;
+  --light-gray: #F2F2F2;
+  --mid-gray: #737373;
+  --obsidian: #0D0D0D;
+
+  --bb: "BiotifBlack", sans-serif;
+  --og: "Overused Grotesk", sans-serif;
+  --ms: "Montserrat", sans-serif;
+
+  /* Mapped to PALETA 03 */
+  --alpha: #F2F2F2;
+  --beta: #0D0D0D;
+  --charlie: #D99AAB;
+  --delta: #F2F2F2;
+  --echo: #D9B0B7;
+  --fox: #EAD4D8;
+  --golf: #D99AAB;
+
+  /* Folder & Paper Tokens (PALETA 03) */
+  --folder-back-from: #2c2427;
+  --folder-back-to: #181416;
+  --folder-front-from: rgba(44, 36, 39, 0.91);
+  --folder-front-to: rgba(18, 14, 16, 0.98);
+  --folder-stroke: rgba(242, 242, 242, 0.14);
+  --folder-chip: rgba(26, 21, 23, 0.85);
+  --shadow-folder: 0 30px 50px -25px rgba(0, 0, 0, 0.9);
+  --paper: #F2F2F2;
+  --paper-foreground: #0D0D0D;
+  --paper-muted: #737373;
+  --paper-line: #e2dce0;
+  --paper-tag: #D99AAB;
+  --paper-tag-foreground: #0D0D0D;
+  --shadow-paper: 0 -6px 18px -8px rgba(0, 0, 0, 0.65);
 }
 
 body {
   margin: 0px;
-  background-color: #070b19;
-  color: #ffffff;
+  background-color: var(--obsidian);
+  color: var(--light-gray);
   overflow-x: hidden;
+  scrollbar-width: none;
 }
 
-/* Custom subtle scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
+body::-webkit-scrollbar {
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #070b19;
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
+
+/* ===================================================
+   PROJECTS SECTION — PALETA 03 THEME (BLACK BG)
+   =================================================== */
+.projects-only {
+  width: 100%;
+  background: var(--obsidian);
+}
+
+#projects {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: var(--obsidian);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.zoom-text {
+  background: var(--obsidian);
+  font-family: var(--bb);
+  font-size: 22vw;
+  color: var(--pink-rose);
+  position: relative;
+  transform: scale(3);
+  transition: transform 0.3s ease-out;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.project-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  background: var(--obsidian);
+  border-top: 1px solid rgba(242, 242, 242, 0.1);
+}
+
+.left-container,
+.right-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: var(--obsidian);
+}
+
+.left-container {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(242, 242, 242, 0.08);
+}
+
+.right-container {
+  flex: 6;
+}
+
+.right-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.right-element-one,
+.right-element-two,
+.right-element-three,
+.right-element-four,
+.right-element-five {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  font-family: var(--ms);
+  background: var(--light-gray);
+  padding: 88px 2rem 2vh 2rem;
+  gap: 0.65rem;
+}
+
+.right-element-one {
+  background: #EAD4D8; /* Soft tinted #D9B0B7 */
+}
+
+.right-element-two {
+  background: #D9B0B7; /* Paleta 03 Soft Pink */
+}
+
+.right-element-three {
+  background: #E5C1C8; /* Mid Rose tint */
+}
+
+.right-element-four {
+  background: #D99AAB; /* Paleta 03 Rose Pink */
+}
+
+.project-header {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  padding: 0.2rem 0.4rem;
+  gap: 0.6rem;
+}
+
+.project-name {
+  display: flex;
+  justify-content: center;
+  color: var(--obsidian);
+  font-family: var(--bb);
+  font-size: 2.3vw;
+  line-height: 1.1;
+}
+
+.project-tech-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.project-tech {
+  height: 1.35vw;
+  width: auto;
+  max-width: 2vw;
+  object-fit: contain;
+}
+
+.project-text {
+  color: var(--obsidian);
+  font-family: var(--ms);
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0 3rem;
+  max-width: 85%;
+  font-size: 1.05vw;
+  line-height: 1.5;
+}
+
+.project-banner {
+  width: 82%;
+  height: 48%;
+  max-height: 44vh;
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid rgba(13, 13, 13, 0.15);
+  box-shadow: 0 12px 30px rgba(13, 13, 13, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-container {
+  margin-top: 0.25rem;
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  color: var(--obsidian);
+}
+
+.btn-project-text {
+  font-family: var(--bb);
+}
+
+.project-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.4vh;
+  min-height: 38px;
+  width: 8.5vw;
+  min-width: 96px;
+  font-size: 0.95vw;
+  background: transparent;
+  color: var(--obsidian);
+  border: 2px solid var(--obsidian);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-decoration: none;
+}
+
+.project-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--obsidian);
+  z-index: -1;
+  transition: 0.4s;
+}
+
+.project-btn:hover::before {
+  width: 100%;
+}
+
+.project-btn:hover {
+  color: var(--light-gray);
+}
+
+.project-btn:nth-of-type(2)::before {
+  width: 100%;
+  height: 0;
+}
+
+.project-btn:nth-of-type(2):hover::before {
+  height: 100%;
+}
+
+.left-content {
+  background: var(--obsidian);
+  width: 76%;
+  height: 74%;
+  margin-top: 64px;
+  border-radius: 16px;
+  border: 2px solid rgba(217, 154, 171, 0.3);
+  box-shadow: 0 20px 45px rgba(13, 13, 13, 0.22);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-content img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.left-content img:first-child {
+  opacity: 0.35;
+}
+
+.centered-text {
+  position: absolute;
+  color: var(--light-gray);
+  text-align: center;
+  justify-content: space-around;
+  font-size: 2.15vw;
+  line-height: 1.25;
+  font-family: var(--og);
+  padding: 12% 8%;
+  z-index: 1;
+}
+
+.button-five {
+  flex: 0 1 auto;
+  flex-direction: row;
+  font-family: var(--og);
+  font-size: 1.85vh;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--obsidian);
+  padding: 1.2vh;
+  border: 2px solid var(--pink-rose);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 10vw;
+  height: 10vw;
+  max-width: 135px;
+  max-height: 135px;
+  overflow: hidden;
+  background: var(--pink-rose);
+  z-index: 2;
+  margin-top: auto;
+  margin-bottom: 8%;
+  box-shadow: 0 8px 24px rgba(217, 154, 171, 0.35);
+}
+
+.text-before-four,
+.text-after-four {
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.text-before-four {
+  transform: translateY(0);
+}
+
+.text-after-four {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.button-five:hover .text-before-four {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.button-five:hover .text-after-four {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.button-five:hover {
+  color: var(--obsidian);
+  background: var(--light-gray);
+  border-color: var(--light-gray);
+}
+
+@media (max-width: 760px) {
+  #projects {
+    height: 78vh;
+  }
+  .zoom-text {
+    font-size: 24vw;
+  }
+  .project-container {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .left-container {
+    display: none;
+  }
+  .right-container {
+    height: 100vh;
+    flex: none;
+    overflow: hidden;
+  }
+  .right-element-one,
+  .right-element-two,
+  .right-element-three,
+  .right-element-four,
+  .right-element-five {
+    height: 100vh;
+    padding: 80px 0 3vh 0;
+    gap: 0.5rem;
+  }
+  .project-banner {
+    width: 90%;
+    height: 44%;
+    max-height: 42vh;
+  }
+  .project-header {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .project-name {
+    font-size: 6.5vw;
+  }
+  .project-tech {
+    height: 4.5vw;
+    max-width: 6vw;
+  }
+  .project-text {
+    font-size: 3.2vw;
+    padding: 0 5vw;
+    max-width: 95%;
+    text-align: center;
+  }
+  .project-btn {
+    width: 28vw;
+    font-size: 3.2vw;
+  }
+  .btn-container {
+    min-height: auto;
+    margin-top: 0.25rem;
+  }
+  .button-five {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===================================================
+   FLOATING PHOTO GALLERY PLACEHOLDER SECTION (PALETA 03)
+   =================================================== */
+.photo-card {
+  animation: galleryFloat 6s ease-in-out infinite;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(217, 154, 171, 0.12);
+}
+
+.photo-card:hover {
+  z-index: 30 !important;
+  border-color: var(--pink-rose) !important;
+  box-shadow: 0 22px 50px rgba(217, 154, 171, 0.28);
+}
+
+@keyframes galleryFloat {
+  0%,
+  100% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -12px;
+  }
+}
+
+/* ===================================================
+   3D INTERACTIVE FOLDER SECTION (PALETA 03)
+   =================================================== */
+.folder {
+  perspective: 900px;
+}
+
+.folder-back {
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(var(--shadow-folder));
+}
+
+.folder-front {
+  transform-origin: 50% 100%;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.folder:hover .folder-front,
+.folder:focus-visible .folder-front {
+  transform: rotateX(-22deg) translateY(2px);
+}
+
+.folder:hover .folder-back,
+.folder:focus-visible .folder-back {
+  transform: translateY(-3px);
+}
+
+.folder-paper {
+  transform: translateY(calc(var(--i) * 3%)) rotate(0deg);
+  transform-origin: 50% 100%;
+  transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.15);
+  transition-delay: calc(var(--i) * 40ms);
+  box-shadow: var(--shadow-paper);
+}
+
+.folder:hover .folder-paper,
+.folder:focus-visible .folder-paper {
+  transform: translateY(calc(-46% + var(--i) * 11%))
+    rotate(calc((var(--i) - (var(--n) - 1) / 2) * 5deg));
+}
+
+/* ===================================================
+   TECHNICAL SKILLS STACK SECTION (PALETA 03)
+   =================================================== */
+.skill-scroll {
+  position: relative;
+  height: calc(100vh + var(--skill-steps) * 40vh);
+}
+
+.skill-sticky {
+  position: sticky;
+  top: 4rem;
+  display: flex;
+  min-height: calc(100vh - 4rem);
+  align-items: center;
+  padding-block: 1.5rem;
+}
+
+.skill-stage {
+  position: relative;
+  display: flex;
+  min-height: 25rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.875rem;
+  border: 1px solid rgba(242, 242, 242, 0.09);
+  background: radial-gradient(60% 55% at 50% 50%, rgba(217, 154, 171, 0.12), transparent 70%), #141113;
+  padding: 0.9rem;
+}
+
+.skill-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: #1b1719;
+  border: 1px solid rgba(242, 242, 242, 0.09);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 48px -24px rgba(0, 0, 0, 0.7);
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.skill-card-pill {
+  width: min(82%, 26rem);
+  cursor: pointer;
+  border-radius: 999px;
+  background: #1f1a1d;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 10px 24px -16px rgba(0, 0, 0, 0.6);
+  padding: 0.45rem 0.6rem 0.45rem 0.45rem;
+  transition: border-color 0.2s;
+}
+
+.skill-card-pill:hover,
+.skill-card-pill:focus-visible {
+  border-color: rgba(217, 154, 171, 0.45);
+  outline: none;
+}
+
+.skill-icon {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 999px;
+  background: #282125;
+  color: #9e969a;
+}
+
+.skill-icon-active {
+  background: rgba(217, 154, 171, 0.2);
+  color: #D99AAB;
+}
+
+.skill-chip {
+  border-radius: 0.625rem;
+  background: #D9B0B7;
+  color: #0D0D0D;
+  padding: 0.32rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.skill-progress {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: #D99AAB;
+  transform-origin: left;
+  animation: skill-progress 4.2s linear forwards;
+}
+
+.skill-paused .skill-progress {
+  animation-play-state: paused;
+}
+
+.skill-dot {
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: #2b2427;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.skill-dot-active {
+  width: 1.5rem;
+  background: #D99AAB;
+}
+
+@keyframes skill-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+

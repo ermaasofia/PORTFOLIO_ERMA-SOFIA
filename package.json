@@ -15,6 +15,7 @@
     "@studio-freight/lenis": "^1.0.25",
     "framer-motion": "^10.16.4",
     "framer-motion-3d": "^10.16.4",
+    "gsap": "^3.15.1",
     "leva": "^0.9.35",
     "meshline": "^3.3.1",
     "next": "latest",
